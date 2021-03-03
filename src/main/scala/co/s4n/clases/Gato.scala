@@ -1,4 +1,4 @@
-package co.s4n.gato
+package co.s4n.clases
 
 class Gato (val nombre:String, val comida:String, val color:String)
 

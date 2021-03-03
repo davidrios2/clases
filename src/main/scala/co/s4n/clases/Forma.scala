@@ -1,4 +1,4 @@
-package co.s4n.geometría
+package co.s4n.clases
 
 class Forma {
   def area: Double = 0.0

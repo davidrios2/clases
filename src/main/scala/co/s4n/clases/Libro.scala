@@ -1,4 +1,4 @@
-package co.s4n.editorial
+package co.s4n.clases
 
 class Libro (val titulo: String, val autor: String, val ref: String ){
   //s means substitution and '$' to reference any val

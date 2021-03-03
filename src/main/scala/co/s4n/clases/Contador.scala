@@ -1,4 +1,4 @@
-package co.s4n.contador
+package co.s4n.clases
 
 class Contador (val counter:Int){
   def incr(): Contador = new Contador(counter + 1)
