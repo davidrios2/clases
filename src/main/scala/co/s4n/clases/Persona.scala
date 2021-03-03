@@ -22,7 +22,8 @@ class Director (val nombre: String, val apellido: String, val nacimiento: Int) {
 }
 class Pelicula (val nombre: String, val presentacion:Int, val rangoIMBD: Double, val director: Director){
 
-  def copy(nombre: String = this.nombre, presentacion:Int = this.presentacion, rangoIMBD: Double = this.rangoIMBD, director: Director = this.director)
+  def copy(nombre: String = this.nombre, presentacion:Int = this.presentacion, rangoIMBD: Double =
+    this.rangoIMBD, director: Director = this.director)
     = new Pelicula(nombre, presentacion, rangoIMBD, director)
 
   //def directorOld = copy().presentacion - copy().director.nacimiento
@@ -40,6 +41,7 @@ object Director {
 
   def oldest (director: Director, director2:Director):Director =
     if (director.nacimiento > director2.nacimiento) director else director2
+
 }
 
  object  Pelicula {
@@ -54,6 +56,7 @@ object Director {
      if (pelicula.directorOld > pelicula2.directorOld) pelicula.director else pelicula2.director
    }
  }
+
 object main extends App {
 
   val director = Director("Tarantino","Pérez", 1915 )
@@ -66,7 +69,7 @@ object main extends App {
 
   println(best)
   println(old)
-  
+
   println(director.name)
   println(director2.name)
   println(myMovie.directorOld)
