@@ -81,7 +81,7 @@ case class Rectángulo (val lado1: Double, val lado2 : Double) extends Rectangul
 
 }
 
-case class Cuadrado (val lado:Int = 1){
+case class Cuadrado (val lado:Int = 1) extends Rectangular {
 
   def perímetro():Double = lado * 4
 
@@ -91,6 +91,7 @@ case class Cuadrado (val lado:Int = 1){
 }
 object Draw{
   def apply2(forma:Forma):String = forma.toString
+
   def apply(forma: Forma):String = forma match{
     case Círculo(radio) => s"Un círculo de radio $radio cm"
     case Rectángulo(lado1,lado2) => s"Un Rectángulo de ancho $lado1 cm y ancho $lado2 cm"
@@ -109,4 +110,6 @@ object Color {
   def apply(red: Int, green:Int, blue:Int) = new Color (red, green, blue)
 
 }
+
+
 
