@@ -2,17 +2,15 @@ package co.s4n.clases
 
 object test extends App{
 
-  val listInt= List(1,2,3)
-  val listChar= List('a','b','c')
-  val listString= List("Ruby","cactus","Café")
-
   //def subs[A](lst:List[A]):List[List[A]] = lst.toSet[A].subsets().map(_.toList).toList
 
- def subs[A](lst: List[A]): List[List[A]] = lst match {
-    case Nil => List(Nil)
-    case head :: tail => subs(tail).map(head :: _) ::: subs(tail)
+ def subs[A](lst: List[A]): List[List[A]] = {
+    val list = lst match {
+      case Nil => List(Nil)
+      case head :: tail => subs(tail).map(head :: _) ::: subs(tail)
+    }
+   list.sortBy(_.length)
   }
-  println(subs(listString))
 
   /*def permutaciones[A](lst:List[A]):List[List[A]] = lst match {
     case Nil => List(Nil)
@@ -22,7 +20,7 @@ object test extends App{
 
   def predAtPos[A](lst:List[A], preds:List[(Int, (A)=>Boolean)]) : List[List[Boolean]] = ???
 
-  //study this
+  //*--study this--*
   def myLast[A](lst:List[A]):A = lst match {
     case head :: Nil => head
     case _ :: tail => myLast(tail)
@@ -99,9 +97,7 @@ object test extends App{
 
   def myPack[A](lst:List[A]): List[List[A]] = lst match {
     case Nil => List(List())
-    case head :: tail => 
+    case head :: tail => ???
   }
-
-  println(myFlatten(lst))
 
 }
