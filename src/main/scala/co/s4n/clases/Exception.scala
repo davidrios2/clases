@@ -1,10 +1,11 @@
 package co.s4n.clases
-//Options, either and try are used to manage exceptions
-//those exceptions produce side effects so functional paradigm
-//Option not always has answers
-//Some encapsulates the value in a "box" so we can use them later
-//map converts a A => B so it's our best friend
-//getOrelse is used to take the values of the "box"
+
+/*Exceptions produce side effects so functional paradigm
+so we have Options, either and try to manage exceptions
+Option not always has answers so it's type is None or Some
+Some encapsulates the value in a "box" so we can use them later
+map converts a A => B so it's our best friend
+getOrElse is used to take the values of the "box"*/
 
 object Execption {
 
@@ -14,14 +15,15 @@ object Execption {
     else Some(lst.sum / lst.length)
   }
 
-  //Listas por comprensión
-  //un generador que saca el valor( <- ) de una lista
-  //una guarda (cualificadior): una expresión (if ...) para ver que elemtos quiera filtrar
-  //definiciones locales: un valor x que puede tener una expresión
-  //    for {
-  //      e <- lst
-  //      if (e % 2 == 0)
-  //    }yield e
+  /*Listas por comprensión
+  un generador que saca el valor( <- ) de una lista
+  una guarda (cualificadior): una expresión (if ...) para ver que elemtos quiera filtrar
+  definiciones locales: un valor x que puede tener una expresión
+      for {
+        e <- lst
+        if (e % 2 == 0)
+      }yield e*/
+
   def mapa[A,B](lst:List[A])( f: (A) => B): List[B] = {
     for {
       x <- lst
@@ -54,6 +56,10 @@ object Execption {
     i <- lst
   }yield ((a:A) => x)).foldLeft(lst.head)((e,f) => f(e))*/
 
+  def myLength [A](lst:List[A]):Int = (for {
+    _ <- lst
+  }yield ((a: Int) => a+1)).foldLeft(0)((e,f) => f(e))
+
   def myButLast2[A](lst: List[A]): List[A] = for {
     x <- (List.range(1,lst.length))
     y = lst(x)
@@ -65,10 +71,6 @@ object Execption {
     y = lst(x)
     if (x == (elem-1))
   } yield y
-
-  def myLength [A](lst:List[A]):Int = (for {
-    _ <- lst
-  }yield ((a: Int) => a+1)).foldLeft(0)((e,f) => f(e))
 
   def Both[A](lst: List[A]): List[A] = for {
     x <- lst.drop(lst.length-2)
@@ -89,7 +91,12 @@ object Execption {
   def myHead[A](lst:List[A]) = (for {
     xi <- lst
   }yield ((a:A) => xi)).foldRight(lst.head)((f,e) => f(e))
-  //función generadora de funciones
+  /*función generadora de funciones*/
 
+  def myKthElem[A](k:Int,lst:List[A]) = (for {
+    xi <- lst
+  }yield ((t:(Int, Option[A])) => (t._2) match {
+    case None => if (t._1 == k) (t._1,Some(xi)) else (t._1+1,None)
+    case Some(x) => (t._1, Some(x))})).foldLeft((0,None:Option[A]))((e,f) => f(e))._2.getOrElse(-1)
 
 }
