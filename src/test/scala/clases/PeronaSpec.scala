@@ -1,6 +1,6 @@
 package clases
 
-import co.s4n.clases.Execption.{compress2, media, myHead, myKthElem, myLast4, prime}
+import co.s4n.clases.Execption.{compress2, media, myButLast2, myHead, myKthElem, myLast4, prime}
 import co.s4n.clases.Persona
 import co.s4n.clases.test._
 //import co.s4n.clases.test.subs
@@ -41,20 +41,30 @@ class PeronaSpec extends AnyFlatSpec with Matchers {
   }
 
   //check compress with for comprehension
-  "The compress2" should "be 2" in {
+  /*"The compress2" should "be 2" in {
     val list = List(2,2,1,3,5)
     compress2(list) shouldEqual List(2,1,3,5)
-  }
+  }*/
 
   "The head" should "be 1" in {
     val list = List(1,3,5,6,2)
     myHead(list) shouldEqual 1
   }
 
-  "The kth element" should "be 2" in {
-    val list = List(2,1,2,3,5,4)
-    myKthElem(5,list) shouldEqual 4
+  "the second last" should "be 6" in {
+    val list = List(1,3,5,6,2)
+    myButLast2(list) shouldEqual List(6)
   }
+
+  "The kth element" should "be 2" in {
+    val list = List(2,158,21,3,500,40)
+    myKthElem(0,list) shouldEqual 2
+  }
+  "The number 2" should "be even" in {
+    val par = (x:Integer) => if (x % 2 == 0) "es par"
+    par(2) shouldEqual ("es par")
+  }
+
 
 
 }
